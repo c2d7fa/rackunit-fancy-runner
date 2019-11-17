@@ -6,7 +6,10 @@
          ;; We need this in order to be able to inspect the check-info results.
          (prefix-in priv: rackunit/private/check-info))
 
-(provide run-tests/fancy)
+(provide run-tests/fancy
+         number-failed
+         number-succeeded
+         any-failed?)
 
 (define (indent text #:spaces (spaces 4))
   (define (relines lines) (string-join lines "\n"))
@@ -63,4 +66,9 @@
     (printf "~%Ran \e[1m~A\e[0m tests: \e[34;1m~A\e[0m succeeded, \e[31;1m~A\e[0m failed.~%"
             (+ var-good var-bad)
             var-good
-            var-bad)))
+            var-bad))
+  (list var-good var-bad))
+
+(define (number-failed results) (first results))
+(define (number-succeeded results) (second results))
+(define (any-failed? results) (> (number-failed results) 0))
