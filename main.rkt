@@ -69,6 +69,6 @@
             var-bad))
   (list var-good var-bad))
 
-(define (number-failed results) (first results))
-(define (number-succeeded results) (second results))
+(define (number-succeeded results) (first results))
+(define (number-failed results) (second results))
 (define (any-failed? results) (> (number-failed results) 0))
